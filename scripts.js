@@ -5,6 +5,14 @@ const buttonVeganFlavors = document.querySelector('.vegan-flavors')
 
 const list = document.querySelector('ul')
 
+function formatValue(value) {
+  const newValue = value.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  })
+  return newValue
+}
+
 function showAll(productArray) {
   let mylist = ''
   productArray.forEach(product => {
@@ -12,7 +20,7 @@ function showAll(productArray) {
     <li>
       <img class="img-product" src=${product.src} />
       <p class="name">${product.name}</p>
-      <p class="price">R$${product.price}</p>
+      <p class="price">${formatValue(product.price)}</p>
     </li>
   `
 
@@ -36,7 +44,9 @@ function calcAll() {
   )
   list.innerHTML = `
   <li>
-    <p>A soma de todos os itens do menu <br>é: ${valueAllProducts} </p>
+    <p>A soma de todos os itens do menu <br>é: ${formatValue(
+      valueAllProducts
+    )} </p>
   </li>`
 }
 
