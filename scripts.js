@@ -1,5 +1,7 @@
 const buttonShowAll = document.querySelector('.show-all')
 const buttonPromotion = document.querySelector('.show-promotion')
+const buttonAmount = document.querySelector('.amount')
+const buttonVeganFlavors = document.querySelector('.vegan-flavors')
 
 const list = document.querySelector('ul')
 
@@ -27,5 +29,28 @@ function promotion() {
   showAll(promotionProduct)
 }
 
+function calcAll() {
+  const valueAllProducts = menuOptions.reduce(
+    (acc, product) => acc + product.price,
+    0
+  )
+  list.innerHTML = `
+  <li>
+    <p>A soma de todos os itens do menu <br>é: ${valueAllProducts} </p>
+  </li>`
+}
+
+function allVegans() {
+  const AllProductsVegans = menuOptions.filter(
+    product => product.vegan === true
+  )
+
+  showAll(AllProductsVegans)
+}
+
 buttonShowAll.addEventListener('click', () => showAll(menuOptions))
 buttonPromotion.addEventListener('click', promotion)
+buttonAmount.addEventListener('click', calcAll)
+buttonVeganFlavors.addEventListener('click', allVegans)
+
+// console.log(buttonVeganFlavors)
